@@ -1,0 +1,21 @@
+<h3>Number of Products : {{getNumberOfProducts()}}</h3>
+
+<div *ngFor="let product of products">
+  <h5>{{product.name}}</h5>
+  <p>{{product.price}}</p>
+  <p>{{product.rating}}</p>
+  <img [src]="product.imgUrl" alt="book cover">
+  <hr>
+</div>
+
+<h3>Add Product: </h3>
+
+<form #createProduct = "ngForm">
+  <input type="text" name="name" placeholder="Name" ngModel /><br />
+  <input type="text" name="price" placeholder="Price" ngModel /><br />
+  <input type="text" name="imgUrl" placeholder="Image URL" ngModel /><br />
+  <input type="number" name="rating" placeholder="rating" ngModel /><br />
+
+  <input type="submit" value="Add Item" (click) = "onSubmit(createProduct)"/>
+</form>
+

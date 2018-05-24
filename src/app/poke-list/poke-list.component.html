@@ -1,0 +1,48 @@
+<h1>Pokedex</h1>
+
+<!-- show all pokemon -->
+<table *ngIf="!selected">
+  <thead>
+    <tr>
+      <td>id</td>
+      <td>name</td>
+      <td>image</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let poke of pokemons" (click)="selected = poke">
+      <td>{{poke.pokeId}}</td>
+      <td>{{poke.name}}</td>
+      <td>
+        <img src={{poke.img}}/>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- detail view -->
+<div *ngIf="selected">
+  <img [src]="selected.img" />
+  <p>{{selected.pokeId}}</p>
+  <p>{{selected.name}}</p>
+  <p>{{selected.height}}</p>
+  <p>{{selected.weight}}</p>
+  <p>{{selected.description}}</p>
+
+  <h6>Types:</h6>
+  <p *ngFor="let type of selected.types">{{type.name}}</p>
+
+  <button (click)="selected = null">Back</button>
+</div>
+
+<!-- create form -->
+<form>
+  <input type="text" name="pokeId" [(ngModel)]="newPoke.pokeId" />
+  <input type="text" name="name" [(ngModel)]="newPoke.name" />
+  <input type="text" name="height" [(ngModel)]="newPoke.height" />
+  <input type="text" name="weight" [(ngModel)]="newPoke.weight" />
+  <input type="text" name="img" [(ngModel)]="newPoke.img" />
+  <input type="text" name="description" [(ngModel)]="newPoke.description" />
+
+  <button (click)="createPokemon(newPoke)">Create Pokemon!</button>
+</form>
